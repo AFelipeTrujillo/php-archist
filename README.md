@@ -17,7 +17,7 @@ The script generates the following professional layout:
 ### 1. Remote Execution (One-liner)
 You can run Archist without downloading the file:
 ```bash
-curl -s [https://raw.githubusercontent.com/YOUR_USERNAME/archist/main/archist.sh](https://raw.githubusercontent.com/YOUR_USERNAME/archist/main/archist.sh) | bash
+curl -s [https://raw.githubusercontent.com/AFelipeTrujillo/php-archist/main/archist.sh](https://raw.githubusercontent.com/AFelipeTrujillo/php-archist/main/archist.sh) | bash
 
 ```
 
