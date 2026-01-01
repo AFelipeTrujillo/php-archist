@@ -1,5 +1,8 @@
 # Archist
 
+![Version](https://img.shields.io/badge/version-v1.0-blue.svg)
+![PHP](https://img.shields.io/badge/php-%3E%3D8.0-777bb4.svg)
+
 Archist is a lightweight bash utility designed to scaffold **Clean Architecture** directory structures for PHP projects in seconds.
 
 ## Folder Structure
