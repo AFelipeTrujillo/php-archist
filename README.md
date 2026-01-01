@@ -1,6 +1,6 @@
 # Archist
 
-Archist is a lightweight bash utility designed to scaffold Clean Architecture directory structures for PHP projects in seconds.
+Archist is a lightweight bash utility designed to scaffold **Clean Architecture** directory structures for PHP projects in seconds.
 
 ## Folder Structure
 
