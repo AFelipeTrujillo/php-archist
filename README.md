@@ -17,7 +17,7 @@ The script generates the following professional layout:
 
 ## Usage
 
-### Installation
+### 1. Installation
 
 #### Stable Release (v1.0.0)
 To use the latest stable version, run:
