@@ -17,10 +17,12 @@ The script generates the following professional layout:
 
 ## Usage
 
-### 1. Remote Execution (One-liner)
-You can run Archist without downloading the file:
+### Installation
+
+#### Stable Release (v1.0.0)
+To use the latest stable version, run:
 ```bash
-curl -s [https://raw.githubusercontent.com/AFelipeTrujillo/php-archist/main/archist.sh](https://raw.githubusercontent.com/AFelipeTrujillo/php-archist/main/archist.sh) | bash
+curl -s [https://raw.githubusercontent.com/AFelipeTrujillo/php-archist/v1.0/archist.sh](https://raw.githubusercontent.com/AFelipeTrujillo/php-archist/v1.0/archist.sh) | bash
 
 ```
 
@@ -45,3 +47,11 @@ chmod +x archist.sh
 ## Customization
 
 The script creates `.gitkeep` files in every directory to ensure that your Git repository tracks the empty folder structure from the start.
+
+## Release History
+
+### [v1.0.0] - 2026-01-01
+- **Initial Release**: Core Clean Architecture scaffolding.
+- Added `Domain`, `Application`, and `Infrastructure` layers.
+- Added `public/index.php` entry point.
+- Added `.gitkeep` support for empty directories.
