@@ -17,7 +17,7 @@ Archist generates a professional layout following the "Screaming Architecture" p
 
 ## Usage
 
-### Installation
+### 1. Installation
 
 ```bash
 curl -s [https://raw.githubusercontent.com/AFelipeTrujillo/php-archist/v1.1.0/archist.sh](https://raw.githubusercontent.com/AFelipeTrujillo/php-archist/v1.1.0/archist.sh) | bash
@@ -51,7 +51,13 @@ chmod +x archist.sh
 * **Enhancement**: Improved `public/index.php` with initial boilerplate.
 
 ### [v1.0.0] - 2026-01-01
-- **Initial Release**: Core Clean Architecture scaffolding.
-- Added `Domain`, `Application`, and `Infrastructure` layers.
-- Added `public/index.php` entry point.
-- Added `.gitkeep` support for empty directories.
+
+* **Initial Release**: Core Clean Architecture scaffolding.
+* Added `Domain`, `Application`, and `Infrastructure` layers.
+* Added `.gitkeep` support for tracking empty directories.
+
+---
+
+## License
+
+This project is licensed under the MIT License.
