@@ -3,6 +3,7 @@
 # Define the root directories
 BASE_DIR="src"
 PUBLIC_DIR="public"
+TESTS_DIR="tests"
 
 # Display ASCII Logo
 cat << "EOF"
@@ -25,15 +26,17 @@ DIRECTORIES=(
     "$BASE_DIR/Application/DTO"
     "$BASE_DIR/Application/Service"
     "$BASE_DIR/Infrastructure/Persistence"
-    "$BASE_DIR/Infrastructure/Http/Controllers"
-    "$BASE_DIR/Infrastructure/Http/Middleware"
-    "$BASE_DIR/Infrastructure/Console"
+    "$BASE_DIR/Infrastructure/Delivery/Http"
+    "$BASE_DIR/Infrastructure/Delivery/Console"
     "$BASE_DIR/Infrastructure/ExternalApi"
     "$BASE_DIR/Shared"
+    "$TESTS_DIR/Unit"
+    "$TESTS_DIR/Integration"
     "$PUBLIC_DIR"
 )
 
 echo "Starting Clean Architecture scaffolding..."
+echo "------------------------------------------"
 
 # Create directories
 for dir in "${DIRECTORIES[@]}"; do
@@ -45,16 +48,29 @@ for dir in "${DIRECTORIES[@]}"; do
     fi
 done
 
-# Create the empty index.php in public folder
+# Create the index.php with a professional comment
 INDEX_FILE="$PUBLIC_DIR/index.php"
 if [ ! -f "$INDEX_FILE" ]; then
-    touch "$INDEX_FILE"
+    cat << "EOF" > "$INDEX_FILE"
+<?php
+
+/**
+ * Archist - Web Entry Point
+ * This file is the front controller for your application.
+ */
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+// Boot your application here...
+EOF
     echo "CREATED: $INDEX_FILE"
 else
     echo "SKIPPED: $INDEX_FILE (Already exists)"
 fi
 
-# Create a sample .gitkeep in each folder to ensure empty folders are tracked
+# Create .gitkeep in each folder
 find "$BASE_DIR" -type d -exec touch {}/.gitkeep \;
+find "$TESTS_DIR" -type d -exec touch {}/.gitkeep \;
 
+echo "------------------------------------------"
 echo "Structure created successfully."
