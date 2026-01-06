@@ -1,36 +1,36 @@
 # Archist
 
-![Version](https://img.shields.io/badge/version-v1.0-blue.svg)
-![PHP](https://img.shields.io/badge/php-%3E%3D8.0-777bb4.svg)
-
-Archist is a lightweight bash utility designed to scaffold **Clean Architecture** directory structures for PHP projects in seconds.
+Archist is a lightweight bash utility designed to scaffold **Clean Architecture** directory structures for PHP projects in seconds. It organizes your code into layers, making it decoupled, testable, and easy to maintain.
 
 ## Folder Structure
 
-The script generates the following professional layout:
+Archist generates a professional layout following the "Screaming Architecture" principle:
 
-- **src/Domain**: Core business logic (Entities, Value Objects, Repository Interfaces).
-- **src/Application**: Orchestration (Use Cases, DTOs, Services).
-- **src/Infrastructure**: Technical implementation (Persistence, HTTP, Console, External APIs).
-- **src/Shared**: Cross-cutting concerns.
-- **public/**: Web server entry point containing an empty `index.php`.
+* **`src/Domain`**: The heart of your app. Contains Entities, Value Objects, and Repository Interfaces. No external dependencies.
+* **`src/Application`**: Orchestration layer. Contains Use Cases, DTOs, and Application Services.
+* **`src/Infrastructure`**: Implementation details.
+* **`Persistence`**: Database logic (Eloquent, Doctrine, PDO).
+* **`Delivery`**: Entry points for the application (**Http** for Web, **Console** for CLI).
+* **`ExternalApi`**: Third-party service integrations.
+* **`tests/`**: Dedicated space for **Unit** and **Integration** tests.
+* **`public/`**: Web server document root. Contains the `index.php` front controller.
 
 ## Usage
 
-### Installation
+### 1. Remote Execution (One-liner)
 
-#### Stable Release (v1.0.0)
-To use the latest stable version, run:
+Run the latest stable version directly without downloading:
+
 ```bash
-curl -s [https://raw.githubusercontent.com/AFelipeTrujillo/php-archist/v1.0/archist.sh](https://raw.githubusercontent.com/AFelipeTrujillo/php-archist/v1.0/archist.sh) | bash
+curl -s [https://raw.githubusercontent.com/AFelipeTrujillo/php-archist/v1.1.0/archist.sh](https://raw.githubusercontent.com/AFelipeTrujillo/php-archist/v1.1.0/archist.sh) | bash
 
 ```
 
 ### 2. Local Execution
 
-If you have the `archist.sh` file locally, follow these steps:
+If you have the `archist.sh` file in your machine:
 
-1. **Give execution permissions:**
+1. **Grant execution permissions:**
 ```bash
 chmod +x archist.sh
 
@@ -41,17 +41,25 @@ chmod +x archist.sh
 ./archist.sh
 
 ```
-
-*Note: If you are on Windows, please use **Git Bash** or **WSL** to execute the script.*
-
-## Customization
-
-The script creates `.gitkeep` files in every directory to ensure that your Git repository tracks the empty folder structure from the start.
+*Note: Windows users should use **Git Bash** or **WSL**.*
 
 ## Release History
 
+### [v1.1.0] - 2026-01-06
+
+* **Feature**: Added `tests/` directory (Unit & Integration).
+* **Architecture**: Refactored Infrastructure to include `Delivery` (Http/Console) for multiple entry points.
+* **Enhancement**: Added ASCII Logo to the CLI output.
+* **Enhancement**: Improved `public/index.php` with initial boilerplate.
+
 ### [v1.0.0] - 2026-01-01
-- **Initial Release**: Core Clean Architecture scaffolding.
-- Added `Domain`, `Application`, and `Infrastructure` layers.
-- Added `public/index.php` entry point.
-- Added `.gitkeep` support for empty directories.
+
+* **Initial Release**: Core Clean Architecture scaffolding.
+* Added `Domain`, `Application`, and `Infrastructure` layers.
+* Added `.gitkeep` support for tracking empty directories.
+
+---
+
+## License
+
+This project is licensed under the MIT License.
