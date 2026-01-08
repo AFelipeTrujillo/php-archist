@@ -15,6 +15,37 @@ Archist generates a professional layout following the "Screaming Architecture" p
 * **`tests/`**: Dedicated space for **Unit** and **Integration** tests.
 * **`public/`**: Web server document root. Contains the `index.php` front controller.
 
+## Directory Tree
+
+This is the resulting structure after running Archist:
+
+```text
+.
+├── composer.json
+├── public/
+│   └── index.php
+├── src/
+│   ├── Application/
+│   │   ├── DTO/
+│   │   ├── Service/
+│   │   └── UseCase/
+│   ├── Domain/
+│   │   ├── Entity/
+│   │   ├── Exception/
+│   │   ├── Repository/
+│   │   └── ValueObject/
+│   ├── Infrastructure/
+│   │   ├── Delivery/
+│   │   │   ├── Console/
+│   │   │   └── Http/
+│   │   ├── ExternalApi/
+│   │   └── Persistence/
+│   └── Shared/
+└── tests/
+    ├── Integration/
+    └── Unit/
+```
+
 ## Usage
 
 ### 1. Installation
