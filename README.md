@@ -20,7 +20,7 @@ Archist generates a professional layout following the "Screaming Architecture" p
 ### 1. Installation
 
 ```bash
-curl -s [https://raw.githubusercontent.com/AFelipeTrujillo/php-archist/v1.1.0/archist.sh](https://raw.githubusercontent.com/AFelipeTrujillo/php-archist/v1.1.0/archist.sh) | bash
+curl -s [https://raw.githubusercontent.com/AFelipeTrujillo/php-archist/v1.1.0/archist.sh](https://raw.githubusercontent.com/AFelipeTrujillo/php-archist/v1.2.0/archist.sh) | bash
 
 ```
 
@@ -42,7 +42,11 @@ chmod +x archist.sh
 *Note: Windows users should use **Git Bash** or **WSL**.*
 
 ## Release History
+### [v1.2.0] - 2026-01-08
+* **Feature**: Added interactive project configuration (Name, Type, License).
+* **Feature**: Automatic composer.json generation with PSR-4 mapping.
 
+Improvement: Added autoload validation in index.php. 
 ### [v1.1.0] - 2026-01-06
 
 * **Feature**: Added `tests/` directory (Unit & Integration).

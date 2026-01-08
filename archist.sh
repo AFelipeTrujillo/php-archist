@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# Define the root directories
-BASE_DIR="src"
-PUBLIC_DIR="public"
-TESTS_DIR="tests"
-
 # Display ASCII Logo
 cat << "EOF"
                 _     _     _   
@@ -15,6 +10,50 @@ cat << "EOF"
  \__,_|_|  \___|_| |_|_|___/\__|
                                 
 EOF
+
+echo "--- Project Configuration ---"
+
+# 1. Project Name
+read -p "Project Name (e.g., yourname/project): " PROJ_NAME
+PROJ_NAME=${PROJ_NAME:-"vendor/project"}
+
+# 2. Description
+read -p "Description: " PROJ_DESC
+PROJ_DESC=${PROJ_DESC:-"Clean Architecture project created with Archist"}
+
+# 3. Project Type Selector
+echo "Select Project Type:"
+options_type=("project" "library" "composer-plugin")
+select PROJ_TYPE in "${options_type[@]}"
+do
+    case $PROJ_TYPE in
+        "project"|"library"|"composer-plugin")
+            break
+            ;;
+        *) echo "Invalid option $REPLY";;
+    esac
+done
+
+# 4. License Selector
+echo "Select License:"
+options_license=("MIT" "Apache-2.0" "GPL-3.0" "Proprietary")
+select PROJ_LICENSE in "${options_license[@]}"
+do
+    case $PROJ_LICENSE in
+        "MIT"|"Apache-2.0"|"GPL-3.0"|"Proprietary")
+            break
+            ;;
+        *) echo "Invalid option $REPLY";;
+    esac
+done
+
+echo "------------------------------------------"
+echo "🚀 Scaffolding project: $PROJ_NAME"
+
+# Define the root directories
+BASE_DIR="src"
+PUBLIC_DIR="public"
+TESTS_DIR="tests"
 
 # List of directories to create
 DIRECTORIES=(
@@ -35,20 +74,15 @@ DIRECTORIES=(
     "$PUBLIC_DIR"
 )
 
-echo "Starting Clean Architecture scaffolding..."
-echo "------------------------------------------"
-
 # Create directories
 for dir in "${DIRECTORIES[@]}"; do
     if [ ! -d "$dir" ]; then
         mkdir -p "$dir"
         echo "CREATED: $dir"
-    else
-        echo "SKIPPED: $dir (Already exists)"
     fi
 done
 
-# Create the index.php with a professional comment
+# Create the index.php
 INDEX_FILE="$PUBLIC_DIR/index.php"
 if [ ! -f "$INDEX_FILE" ]; then
     cat << "EOF" > "$INDEX_FILE"
@@ -56,21 +90,53 @@ if [ ! -f "$INDEX_FILE" ]; then
 
 /**
  * Archist - Web Entry Point
- * This file is the front controller for your application.
  */
+
+// Validate if the autoload file exists
+if (!file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    die('Autoload file not found. Please run "composer install".');
+}
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
 // Boot your application here...
 EOF
     echo "CREATED: $INDEX_FILE"
-else
-    echo "SKIPPED: $INDEX_FILE (Already exists)"
 fi
 
-# Create .gitkeep in each folder
+# Create custom composer.json
+COMPOSER_FILE="composer.json"
+if [ ! -f "$COMPOSER_FILE" ]; then
+cat << EOF > "$COMPOSER_FILE"
+{
+    "name": "$PROJ_NAME",
+    "description": "$PROJ_DESC",
+    "type": "$PROJ_TYPE",
+    "license": "$PROJ_LICENSE",
+    "autoload": {
+        "psr-4": {
+            "App\\\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\\\": "tests/"
+        }
+    },
+    "require": {
+        "php": ">=8.0"
+    }
+}
+EOF
+    echo "CREATED: $COMPOSER_FILE"
+fi
+
+# Create .gitkeep files
 find "$BASE_DIR" -type d -exec touch {}/.gitkeep \;
 find "$TESTS_DIR" -type d -exec touch {}/.gitkeep \;
 
 echo "------------------------------------------"
-echo "Structure created successfully."
+echo "Success! Your Clean Architecture project is ready."
+echo "Next steps:"
+echo "1. Run 'composer install'"
+echo "2. Start coding in src/Domain"
