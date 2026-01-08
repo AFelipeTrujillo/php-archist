@@ -76,8 +76,7 @@ chmod +x archist.sh
 ### [v1.2.0] - 2026-01-08
 * **Feature**: Added interactive project configuration (Name, Type, License).
 * **Feature**: Automatic composer.json generation with PSR-4 mapping.
-
-Improvement: Added autoload validation in index.php. 
+* **Improvement**: Added autoload validation in index.php. 
 ### [v1.1.0] - 2026-01-06
 
 * **Feature**: Added `tests/` directory (Unit & Integration).
