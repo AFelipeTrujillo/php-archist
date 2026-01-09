@@ -1,6 +1,6 @@
 # Archist
 
-![Version](https://img.shields.io/badge/version-v1.3.0-blue.svg)
+![Version](https://img.shields.io/badge/version-v1.3.1-blue.svg)
 ![PHP](https://img.shields.io/badge/php-%3E%3D8.0-777bb4.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)
@@ -58,7 +58,7 @@ This is the resulting structure after running Archist:
 ### 1. Installation
 
 ```bash
-curl -s [https://raw.githubusercontent.com/AFelipeTrujillo/php-archist/v1.2.0/archist.sh](https://raw.githubusercontent.com/AFelipeTrujillo/php-archist/v1.3.0/archist.sh) | bash
+curl -s [https://raw.githubusercontent.com/AFelipeTrujillo/php-archist/v1.3.1/archist.sh](https://raw.githubusercontent.com/AFelipeTrujillo/php-archist/v1.3.1/archist.sh) | bash
 
 ```
 
