@@ -1,5 +1,12 @@
 # Archist
 
+![Version](https://img.shields.io/badge/version-v1.3.0-blue.svg)
+![PHP](https://img.shields.io/badge/php-%3E%3D8.0-777bb4.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)
+![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
+![Architecture](https://img.shields.io/badge/Architecture-Clean-orange.svg)
+
 Archist is a lightweight bash utility designed to scaffold **Clean Architecture** directory structures for PHP projects in seconds. It organizes your code into layers, making it decoupled, testable, and easy to maintain.
 
 ## Folder Structure
@@ -73,6 +80,13 @@ chmod +x archist.sh
 *Note: Windows users should use **Git Bash** or **WSL**.*
 
 ## Release History
+### [v1.3.0] - 2026-01-09
+- **Interactive CLI**: Added prompts to customize project name, description, type, and license.
+- **Dynamic Composer**: Automatic generation of `composer.json` with PSR-4 autoloading for `App\` and `Tests\`.
+- **Environment Support**: Optional integration of `vlucas/phpdotenv` with automatic `.env` and `.env.example` creation.
+- **Infrastructure Refactor**: Implemented a "Delivery" sub-layer to clearly separate `Http` and `Console` entry points.
+- **Safety Check**: Added a vendor validation guard in `public/index.php` to guide users who forget to run composer install.
+
 ### [v1.2.0] - 2026-01-08
 * **Feature**: Added interactive project configuration (Name, Type, License).
 * **Feature**: Automatic composer.json generation with PSR-4 mapping.
