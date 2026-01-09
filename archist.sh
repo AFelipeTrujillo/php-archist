@@ -47,8 +47,12 @@ do
     esac
 done
 
+# 5. Ask for .env file
+read -p "Do you want to include .env support (phpdotenv)? (y/n): " INCLUDE_ENV
+INCLUDE_ENV=${INCLUDE_ENV:-"n"}
+
 echo "------------------------------------------"
-echo "🚀 Scaffolding project: $PROJ_NAME"
+echo "Scaffolding project: $PROJ_NAME"
 
 # Define the root directories
 BASE_DIR="src"
@@ -82,16 +86,26 @@ for dir in "${DIRECTORIES[@]}"; do
     fi
 done
 
+# If .env support is requested, add phpdotenv to composer.json
+DOTENV_REQUIRE=""
+if [[ "$INCLUDE_ENV" == "y" || "$INCLUDE_ENV" == "Y" ]]; then
+    DOTENV_REQUIRE="\"vlucas/phpdotenv\": \"^5.5\","
+    echo "Including phpdotenv support..."
+    # Create .env file
+    cat << EOF > ".env"
+APP_NAME="$PROJ_NAME"
+APP_ENV=development
+EOF
+    echo "CREATED: .env"
+    cp .env .env.example
+    echo "CREATED: .env.example"
+fi
+
 # Create the index.php
 INDEX_FILE="$PUBLIC_DIR/index.php"
 if [ ! -f "$INDEX_FILE" ]; then
     cat << "EOF" > "$INDEX_FILE"
 <?php
-
-/**
- * Archist - Web Entry Point
- */
-
 // Validate if the autoload file exists
 if (!file_exists(__DIR__ . '/../vendor/autoload.php')) {
     die('Autoload file not found. Please run "composer install".');
@@ -124,10 +138,13 @@ cat << EOF > "$COMPOSER_FILE"
         }
     },
     "require": {
-        "php": ">=8.0"
+        "php": ">=8.0",
+        $DOTENV_REQUIRE
     }
 }
 EOF
+    # Remove trailing comma if phpdotenv is not included
+    sed -i 's/,$//g' "$COMPOSER_FILE" 2>/dev/null || sed -i '' 's/,$//g' "$COMPOSER_FILE"
     echo "CREATED: $COMPOSER_FILE"
 fi
 
