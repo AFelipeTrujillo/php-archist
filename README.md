@@ -58,7 +58,7 @@ This is the resulting structure after running Archist:
 ### 1. Installation
 
 ```bash
-curl -s [https://raw.githubusercontent.com/AFelipeTrujillo/php-archist/v1.3.1/archist.sh](https://raw.githubusercontent.com/AFelipeTrujillo/php-archist/v1.3.1/archist.sh) | bash
+curl -s https://raw.githubusercontent.com/AFelipeTrujillo/php-archist/v1.3.1/archist.sh | bash
 
 ```
 
