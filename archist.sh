@@ -86,10 +86,14 @@ for dir in "${DIRECTORIES[@]}"; do
     fi
 done
 
+# Define dependecies
+DEPENDENCIES="\"php\": \">=8.0\""
+
 # If .env support is requested, add phpdotenv to composer.json
 DOTENV_REQUIRE=""
 if [[ "$INCLUDE_ENV" == "y" || "$INCLUDE_ENV" == "Y" ]]; then
-    DOTENV_REQUIRE="\"vlucas/phpdotenv\": \"^5.5\","
+    DEPENDENCIES="$DEPENDENCIES,
+        \"vlucas/phpdotenv\": \"^5.5\""
     echo "Including phpdotenv support..."
     # Create .env file
     cat << EOF > ".env"
@@ -138,13 +142,12 @@ cat << EOF > "$COMPOSER_FILE"
         }
     },
     "require": {
-        "php": ">=8.0",
-        $DOTENV_REQUIRE
+        $DEPENDENCIES
     }
 }
 EOF
     # Remove trailing comma if phpdotenv is not included
-    sed -i 's/,$//g' "$COMPOSER_FILE" 2>/dev/null || sed -i '' 's/,$//g' "$COMPOSER_FILE"
+    # sed -i.bak '/,\s*$/s/,$//' "$COMPOSER_FILE" && rm "${COMPOSER_FILE}.bak"
     echo "CREATED: $COMPOSER_FILE"
 fi
 
